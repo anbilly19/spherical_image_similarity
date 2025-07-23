@@ -1,0 +1,6 @@
+*.zip
+*ipynb
+*.jpg
+*.txt
+*.json
+*.pyc
