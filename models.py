@@ -3,7 +3,7 @@ import torch
 import numpy as np
 def load_model(model_name):
     model = timm.create_model(
-        'vit_base_patch14_dinov2.lvd142m',
+        model_name,
         pretrained=True,
         num_classes=0,  # remove classifier nn.Linear
     )

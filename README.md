@@ -11,9 +11,6 @@ Models tested:
 4. [vit_base_r50_s16_224.orig_in21k](https://huggingface.co/timm/vit_base_r50_s16_224.orig_in21k)
 5. [vit_pe_spatial_large_patch14_448.fb](https://huggingface.co/timm/vit_pe_spatial_large_patch14_448.fb)
 6. [vit_base_patch14_dinov2.lvd142m](https://huggingface.co/timm/vit_base_patch14_dinov2.lvd142m)
-7. [MahmoodLab/uni](https://huggingface.co/MahmoodLab/UNI)
-
-
 
 
 errors/<data_name>: contains error matrix images for different models.
