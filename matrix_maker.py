@@ -11,7 +11,10 @@ def get_gt_matrix(folder_name):
     mat = np.zeros([size,size])
     for i in range(size):
         for j in range(i+1,size):
-            mat[i][j] = sim_dict[str(i)][str(j)]
+            try:
+                mat[i][j] = sim_dict[str(i)][str(j)]
+            except KeyError:
+                mat[i][j] = 0.0
       
     return mat
 
