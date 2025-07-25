@@ -27,11 +27,17 @@ def get_sim_matrix(emb):
             
             # sc.write(f"{score} {i} {j}")
             # sc.write('\n')
-            sim[i][j] = score
+            if i==j:
+                sim[i][j] = 0.0
+            else:
+                sim[i][j] = score
     
     return sim
 
 def get_error_matrix(sim,gt):
     assert np.isfinite(sim).any()
     assert np.isfinite(gt).any()
-    return abs(gt-sim)
+    # error_mat = abs(gt-sim)
+    error_mat = 0.5*(sim - gt) + 0.5 
+    error_mat[np.diag_indices_from(error_mat)] = -1
+    return error_mat
