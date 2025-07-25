@@ -27,10 +27,7 @@ def get_sim_matrix(emb):
             
             # sc.write(f"{score} {i} {j}")
             # sc.write('\n')
-            if i==j:
-                sim[i][j] = 0.0
-            else:
-                sim[i][j] = score
+            sim[i][j] = score
     
     return sim
 

@@ -12,7 +12,7 @@ model_list = [
                   'vit_pe_spatial_large_patch14_448.fb',
                   'vit_base_patch14_dinov2.lvd142m'
                   ]
-folder_name = 'harmony'
+folder_name = 'tokyo'
 if __name__ == "__main__":
     for model_name in model_list:
         
