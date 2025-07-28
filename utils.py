@@ -13,5 +13,5 @@ def save_sim_json(sim,data_name,model_name):
         for i in range(n)
     }
     with open(f"sim_son/{data_name}/{model_name}.json","w+") as js:
-        json.dump(sim_dict,js)
+        json.dump(sim_dict,js,indent= 4)
     
