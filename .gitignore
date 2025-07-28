@@ -2,5 +2,5 @@
 *ipynb
 *.jpg
 *.txt
-*.json
+similarity_map.json.json
 *.pyc
