@@ -12,7 +12,8 @@ model_list = [
                   'vit_pe_spatial_large_patch14_448.fb',
                   'vit_base_patch14_dinov2.lvd142m'
                   ]
-folder_name = 'tokyo'
+folder_name = 'shapespark'
+save=True
 if __name__ == "__main__":
     for model_name in model_list:
         
@@ -20,6 +21,6 @@ if __name__ == "__main__":
         dataloader = load_dataset(folder_name,transform)
         gt_matrix = get_gt_matrix(folder_name)
         embeddings_tensor = extract_embeddings(model,dataloader)
-        sim_matrix = get_sim_matrix(embeddings_tensor)
+        sim_matrix = get_sim_matrix(embeddings_tensor,save,folder_name,model_name)
         error_matrix = get_error_matrix(sim_matrix,gt_matrix)
         save_error_image(error_matrix,folder_name,model_name)

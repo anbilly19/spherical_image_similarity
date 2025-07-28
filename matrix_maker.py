@@ -2,6 +2,8 @@ import json
 from pathlib import Path
 from utils import compute_scores
 import numpy as np
+from utils import save_sim_json
+from plots import save_sim_image
 
 def get_gt_matrix(folder_name):
     json_file_path = Path(folder_name) / 'similarity_map.json'
@@ -18,7 +20,7 @@ def get_gt_matrix(folder_name):
       
     return mat
 
-def get_sim_matrix(emb):
+def get_sim_matrix(emb,save:bool,folder_name,model_name):
     sim = np.zeros([emb.shape[0],emb.shape[0]])
     # with open('score.txt','w+') as sc:
     for i in range(emb.shape[0]):
@@ -28,7 +30,9 @@ def get_sim_matrix(emb):
             # sc.write(f"{score} {i} {j}")
             # sc.write('\n')
             sim[i][j] = score
-    
+    if save:
+        save_sim_image(np.copy(sim),folder_name,model_name)
+        save_sim_json(sim,folder_name,model_name)
     return sim
 
 def get_error_matrix(sim,gt):
