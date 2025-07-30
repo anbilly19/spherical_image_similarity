@@ -2,5 +2,6 @@
 *ipynb
 *.jpg
 *.txt
+!requirements.txt
 *.pyc
 ckpt/*
