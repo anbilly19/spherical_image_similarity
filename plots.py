@@ -1,8 +1,10 @@
 from PIL import Image
+import os
 import numpy as np
 def save_error_image(error_matrix, data_name, model_name):
     pixel_matrix= error_matrix * 255
     error_image = Image.fromarray(pixel_matrix).convert("L") # convert for grayscale
+    os.makedirs(f"errors/{data_name}",exist_ok=True)
     error_image.save(f'errors/{data_name}/{model_name.split("/")[-1]}_gray.png')
 
 def save_sim_image(sim_matrix,data_name,model_name):
@@ -10,4 +12,5 @@ def save_sim_image(sim_matrix,data_name,model_name):
     pixel_matrix = sim_matrix * 255
     pixel_matrix[np.diag_indices_from(pixel_matrix)] = 127
     sim_image = Image.fromarray(pixel_matrix).convert("L") # convert for grayscale
+    os.makedirs(f"sim_image/{data_name}",exist_ok=True)
     sim_image.save(f'sim_image/{data_name}/{model_name.split("/")[-1]}.png')

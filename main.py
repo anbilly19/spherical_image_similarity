@@ -2,24 +2,24 @@ from plots import save_error_image
 from models import load_model, extract_embeddings
 from dataset_loader import load_dataset
 from matrix_maker import get_gt_matrix, get_sim_matrix, get_error_matrix
+from jsonargparse import ArgumentParser
+from typing import List
 
-model_list = [
-            'vit_pe_spatial_large_patch14_448.fb', 
-            'convnextv2_base.fcmae_ft_in22k_in1k_384',
-            'vit_base_patch16_rope_mixed_ape_224.naver_in1k',
-            'vit_base_r50_s16_224.orig_in21k',
-            'vit_pe_core_large_patch14_336.fb',
-            'vit_base_patch14_dinov2.lvd142m'
-                  ]
-folder_name = 'shapespark'
-save=True
+parser = ArgumentParser()
+parser.add_argument("--data_name", default="tokyo", help="dataset folder")
+parser.add_argument("--model_list", type=List[str])
+parser.add_argument("--save", type=bool, default=False, help="To save the similarity image and json map")
+parser.add_argument("--local", type=bool, default=True, help="To access model locally, downloads if not present")
+parser.add_argument("--ckpt_path",default=None, type=str, help="local path to model archive file")
+parser.add_argument("--config",default = "config.yaml", action="config") # overrides defaults
+cfg = parser.parse_args()
 if __name__ == "__main__":
-    for model_name in model_list:
+    for model_name in cfg.model_list:
         
-        model, transform = load_model(model_name)
-        dataloader = load_dataset(folder_name,transform)
-        gt_matrix = get_gt_matrix(folder_name)
+        model, transform = load_model(model_name,cfg.local,cfg.ckpt_path)
+        dataloader = load_dataset(cfg.data_name,transform)
+        gt_matrix = get_gt_matrix(cfg.data_name)
         embeddings_tensor = extract_embeddings(model,dataloader)
-        sim_matrix = get_sim_matrix(embeddings_tensor,save,folder_name,model_name)
+        sim_matrix = get_sim_matrix(embeddings_tensor,cfg.save,cfg.data_name,model_name)
         error_matrix = get_error_matrix(sim_matrix,gt_matrix)
-        save_error_image(error_matrix,folder_name,model_name)
+        save_error_image(error_matrix,cfg.data_name,model_name)
