@@ -11,7 +11,7 @@ parser.add_argument("--model_list", type=List[str])
 parser.add_argument("--save", type=bool, default=False, help="To save the similarity image and json map")
 parser.add_argument("--local", type=bool, default=True, help="To access model locally, downloads if not present")
 parser.add_argument("--ckpt_path",default=None, type=str, help="local path to model archive file")
-parser.add_argument("--config",default = "config.yaml", action="config") # overrides defaults
+parser.add_argument("--config", action="config") # overrides defaults
 cfg = parser.parse_args()
 if __name__ == "__main__":
     for model_name in cfg.model_list:
