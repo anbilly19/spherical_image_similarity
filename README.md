@@ -1,6 +1,7 @@
 Configure model_name from timm and folder_name of any dataset
 
 ### Usage
+Python >=3.10
 Entry point: ```python main.py```
 
 Arguments can be supplied via config.yaml or in the run command.
