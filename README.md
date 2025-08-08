@@ -15,7 +15,7 @@ Code will run with ```local=False```
 if ```ckpt_path``` is provided model will be loaded from that file. It can any of (.safetensors | .bin). [Reference on timm module usage](https://github.com/huggingface/pytorch-image-models/discussions/1826#discussioncomment-599645)
 
 ### Data Sample
-![Tokyo-room](sample_images\tokyo_sample.png)
+![Tokyo-room](sample_images/tokyo_sample.png)
 
 Models tested:
 1. [convnextv2_base.fcmae_ft_in22k_in1k_384](https://huggingface.co/timm/convnextv2_base.fcmae_ft_in22k_in1k_384)
